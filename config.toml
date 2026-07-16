@@ -1,0 +1,14 @@
+# Theme for the Anthidote dashboard.
+# This is the reliable way to set fonts and colours in Streamlit.
+# Edit the hex codes here and the whole site follows.
+
+[theme]
+primaryColor = "#F2B909"           # gold: buttons, slider handles, tab underline
+backgroundColor = "#FFFFFF"        # page background
+secondaryBackgroundColor = "#F1F4F7"  # cards, sidebar, table stripes
+textColor = "#0C1F2D"              # navy: all body text
+font = "sans serif"
+baseFontSize = 17                  # nothing smaller than this by default
+
+[client]
+toolbarMode = "minimal"

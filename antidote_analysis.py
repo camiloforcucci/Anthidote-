@@ -232,7 +232,7 @@ def ticket_band_analysis(rows):
     print("-" * 60)
     fl = [x for x in rows if x["status"] == "Sold" and x["acq"] == "Paid"
           and x["category"] == "Fluke test equipment"]
-    bands = [("Under $250", 0, 250), ("$250 to $500", 250, 500), ("Over $500", 500, 10**9)]
+    bands = [("Under $250", 0, 250), ("$250 to 500", 250, 500), ("Over $500", 500, 10**9)]
     out = []
     for label, lo, hi in bands:
         g = [x for x in fl if lo < x["cogs"] <= hi] if lo else [x for x in fl if x["cogs"] <= hi]
@@ -329,7 +329,7 @@ def make_charts(rows, per_line, bands=None):
 
     # ---- 3. Ticket bands: two panels, no dual axis ----
     if bands:
-        labels = [b[0].replace("$", "\\$") for b in bands]
+        labels = [b[0] for b in bands]
         rois = [b[2] * 100 for b in bands]
         per = [b[3] for b in bands]
         fig, (a1, a2) = plt.subplots(1, 2, figsize=(11.0, 3.9))
@@ -368,7 +368,7 @@ def make_charts(rows, per_line, bands=None):
                    s=150 if is_fluke else 110, zorder=3)
     g = next((x for x in paid_items if "jazz" in x["item"].lower()), None)
     if g:
-        ax.annotate("The guitar\n\\$400 in, \\$60 out, 30 days",
+        ax.annotate("The guitar\n30 days to sell",
                     xy=(g["cogs"], g["profit"]),
                     xytext=(g["cogs"] - 340, g["profit"] + 155),
                     fontsize=14, color=DARK, ha="left",
